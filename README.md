@@ -15,10 +15,7 @@
 
 # Dependencies
 
-**TODO: adapt this section**
-
-- `bash`, `curl`, `tar`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
+- `bash`, `curl`, `unzip`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
 
 # Install
 
@@ -40,7 +37,7 @@ asdf list-all samcli
 asdf install samcli latest
 
 # Set a version globally (on your ~/.tool-versions file)
-asdf global samcli latest
+asdf set --home  samcli latest
 
 # Now samcli commands are available
 sam --version
