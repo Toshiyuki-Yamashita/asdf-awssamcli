@@ -1,11 +1,3 @@
-contributing.md-5-```shell
-contributing.md-6-asdf plugin test <plugin-name> <plugin-url> [--asdf-tool-version <version>] [--asdf-plugin-gitref <git-ref>] [test-command*]
-contributing.md-7-
-contributing.md:8:# TODO: adapt this
-contributing.md-9-asdf plugin test samcli https://github.com/Toshiyuki-Yamashita/asdf-samcli.git "sam --version"
-contributing.md-10-```
-contributing.md-11-
---
 lib/utils.bash-2-
 lib/utils.bash-3-set -euo pipefail
 lib/utils.bash-4-
