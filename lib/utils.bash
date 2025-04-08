@@ -27,7 +27,7 @@ list_github_tags() {
 	git ls-remote --tags --refs "$GH_REPO" |
 		grep -o 'refs/tags/.*' | cut -d/ -f3- |
 		sed 's/^v//' |
-		grep -v '\.dev' | grep -E -v '^1\.(1[0-9]|[0-9])\.'
+		awk '/[a-zA-Z]/ {next} {split($0,v,"."); if (v[1]==0 || (v[1]==1 && v[2]<20)) next; print}'
 }
 
 list_all_versions() {
