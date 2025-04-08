@@ -1,6 +1,6 @@
 <div align="center">
 
-# asdf-samcli [![Build](https://github.com/Toshiyuki-Yamashita/asdf-samcli/actions/workflows/build.yml/badge.svg)](https://github.com/Toshiyuki-Yamashita/asdf-samcli/actions/workflows/build.yml) [![Lint](https://github.com/Toshiyuki-Yamashita/asdf-samcli/actions/workflows/lint.yml/badge.svg)](https://github.com/Toshiyuki-Yamashita/asdf-samcli/actions/workflows/lint.yml)
+# asdf-samcli [![Build](https://github.com/Toshiyuki-Yamashita/asdf-awssamcli//actions/workflows/build.yml/badge.svg)](https://github.com/Toshiyuki-Yamashita/asdf-awssamcli//actions/workflows/build.yml) [![Lint](https://github.com/Toshiyuki-Yamashita/asdf-awssamcli/actions/workflows/lint.yml/badge.svg)](https://github.com/Toshiyuki-Yamashita/asdf-awssamcli//actions/workflows/lint.yml)
 
 [samcli](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) plugin for the [asdf version manager](https://asdf-vm.com).
 
