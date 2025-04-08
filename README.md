@@ -46,6 +46,10 @@ sam --version
 Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
 install & manage versions.
 
+# Related Repositories
+
+* AWS SAM CLI https://github.com/aws/aws-sam-cli
+
 # Contributing
 
 Contributions of any kind welcome! See the [contributing guide](contributing.md).
