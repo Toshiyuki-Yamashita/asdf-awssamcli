@@ -36,13 +36,33 @@ list_all_versions() {
 	list_github_tags
 }
 
+get_os() {
+	case "$(uname -s)" in
+	Linux) echo "linux" ;;
+	Darwin) echo "macos" ;;
+	*) fail "Unsupported OS: $(uname -s)" ;;
+	esac
+}
+
+get_arch() {
+	# for linux
+	case "$(uname -m)" in
+	x86_64) echo "x86_64" ;;
+	Aarch64) echo "arm64" ;;
+	aarch64) echo "arm64" ;;
+	*) fail "Unsupported architecture: $(uname -m)" ;;
+	esac
+}
+
 download_release() {
 	local version filename url
 	version="$1"
 	filename="$2"
 
+	echo "$GH_REPO"
 	# TODO: Adapt the release URL convention for samcli
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	# https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
+	url="$GH_REPO/releases/${version}/download/aws-sam-cli-$(get_os)-$(get_arch).zip"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
