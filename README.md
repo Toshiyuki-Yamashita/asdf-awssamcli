@@ -22,8 +22,6 @@
 Plugin:
 
 ```shell
-asdf plugin add samcli
-# or
 asdf plugin add samcli https://github.com/Toshiyuki-Yamashita/asdf-samcli.git
 ```
 
