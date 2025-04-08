@@ -22,4 +22,4 @@ unzip "$release_file" -d "$ASDF_DOWNLOAD_PATH" || fail "Could not extract $relea
 rm "$release_file"
 (cd "$ASDF_DOWNLOAD_PATH" && ./install -i $ASDF_INSTALL_PATH)
 
-[ "$ASDF_DOWNLOAD_PATH" != "" ] && rm -rf "$ASDF_DOWNLOAD_PATH"/*
+#[ "$ASDF_DOWNLOAD_PATH" != "" ] && rm -rf "$ASDF_DOWNLOAD_PATH"/*
