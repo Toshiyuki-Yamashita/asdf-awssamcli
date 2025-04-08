@@ -20,6 +20,3 @@ unzip "$release_file" -d "$ASDF_DOWNLOAD_PATH" || fail "Could not extract $relea
 
 # Remove the tar.gz file since we don't need to keep it
 rm "$release_file"
-(cd "$ASDF_DOWNLOAD_PATH" && ./install -i $ASDF_INSTALL_PATH)
-
-#[ "$ASDF_DOWNLOAD_PATH" != "" ] && rm -rf "$ASDF_DOWNLOAD_PATH"/*
