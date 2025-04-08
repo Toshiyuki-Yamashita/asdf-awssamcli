@@ -62,7 +62,7 @@ download_release() {
 	echo "$GH_REPO"
 	# TODO: Adapt the release URL convention for samcli
 	# https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
-	url="$GH_REPO/releases/${version}/download/aws-sam-cli-$(get_os)-$(get_arch).zip"
+	url="$GH_REPO/releases/v${version}/download/aws-sam-cli-$(get_os)-$(get_arch).zip"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
