@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for samcli.
 GH_REPO="https://github.com/aws/aws-sam-cli"
 TOOL_NAME="samcli"
 TOOL_TEST="sam --version"
@@ -31,8 +30,6 @@ list_github_tags() {
 }
 
 list_all_versions() {
-	# TODO: Adapt this. By default we simply list the tag names from GitHub releases.
-	# Change this function if samcli has other means of determining installable versions.
 	list_github_tags
 }
 
@@ -78,8 +75,6 @@ install_version() {
 	(
 		mkdir -p "$install_path"
 		(cd "$ASDF_DOWNLOAD_PATH" && ./install -i "$install_path" -b "$install_path")
-
-		# TODO: Assert samcli executable exists.
 
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
