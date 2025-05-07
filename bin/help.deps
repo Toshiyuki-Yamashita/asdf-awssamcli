@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+declare -a deps=(
+	"git"
+	"curl"
+	"unzip"
+)
+for deps in git curl unzip; do
+	echo $deps
+done
