@@ -46,8 +46,7 @@ get_arch() {
 	# for linux
 	case "$(uname -m)" in
 	x86_64) echo "x86_64" ;;
-	Aarch64) echo "arm64" ;;
-	aarch64) echo "arm64" ;;
+	Aarch64 | aarch64 | arm64) echo "arm64" ;;
 	*) fail "Unsupported architecture: $(uname -m)" ;;
 	esac
 }
