@@ -85,7 +85,7 @@ install_macos_version() {
 	package_file="$ASDF_DOWNLOAD_PATH/$(get_release_filename)"
 	expanded_path=$(mktemp -d "$ASDF_DOWNLOAD_PATH/package.XXXXXX")
 	rmdir "$expanded_path"
-
+	trap 'rm -rf "$expanded_path"' EXIT
 	pkgutil --expand-full "$package_file" "$expanded_path"
 	payload_path="$expanded_path/aws-sam-cli.pkg/Payload/aws-sam-cli"
 	test -x "$payload_path/sam" || fail "Could not find the SAM CLI payload in $package_file"
