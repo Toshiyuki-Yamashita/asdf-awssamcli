@@ -8,11 +8,6 @@ Run an end-to-end test against the current working tree:
 scripts/test.bash
 ```
 
-The end-to-end installation currently requires Linux. AWS SAM CLI publishes
-macOS releases as `.pkg` files, while this plugin's download and install hooks
-currently handle the Linux `.zip` distribution. The metadata hooks can still be
-debugged on macOS with the VS Code configurations described below.
-
 Pass a version and an optional verification command when needed:
 
 ```shell
@@ -35,8 +30,7 @@ test harness and plugin hooks and keeps the isolated test environment; its path
 is printed when the debug session ends. Use **Debug latest-stable** or
 **Debug list-all** to set breakpoints and step through those hooks directly.
 
-The **asdf-samcli: integration test latest (Linux)**, **asdf-samcli: lint**,
-and **asdf-samcli: latest stable** commands are also available from **Run
-Task**.
+The **asdf-samcli: integration test latest**, **asdf-samcli: lint**, and
+**asdf-samcli: latest stable** commands are also available from **Run Task**.
 
 Tests are automatically run in GitHub Actions on push and PR.

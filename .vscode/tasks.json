@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "asdf-samcli: integration test latest (Linux)",
+      "label": "asdf-samcli: integration test latest",
       "type": "shell",
       "command": "${workspaceFolder}/scripts/test.bash",
       "args": ["latest"],

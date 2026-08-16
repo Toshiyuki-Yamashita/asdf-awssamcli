@@ -51,6 +51,7 @@ fi
 (
 	cd "$test_root/project"
 	asdf install samcli "$version"
+	asdf reshim samcli "$version"
 	asdf set samcli "$version"
 	asdf exec "$@"
 )

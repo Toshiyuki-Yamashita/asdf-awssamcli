@@ -15,7 +15,9 @@
 
 # Dependencies
 
-- `bash`, `curl`, `unzip`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
+- `bash`, `curl`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
+- Linux: `unzip`.
+- macOS: `pkgutil` (included with macOS).
 
 # Install
 
