@@ -43,7 +43,6 @@ get_os() {
 }
 
 get_arch() {
-	# for linux
 	case "$(uname -m)" in
 	x86_64) echo "x86_64" ;;
 	Aarch64 | aarch64 | arm64) echo "arm64" ;;
@@ -51,34 +50,70 @@ get_arch() {
 	esac
 }
 
+get_release_filename() {
+	local extension
+
+	case "$(get_os)" in
+	linux) extension="zip" ;;
+	macos) extension="pkg" ;;
+	esac
+
+	printf 'aws-sam-cli-%s-%s.%s\n' "$(get_os)" "$(get_arch)" "$extension"
+}
+
 download_release() {
 	local version filename url
 	version="$1"
 	filename="$2"
 
-	echo "$GH_REPO"
-	url="$GH_REPO/releases/download/v${version}/aws-sam-cli-$(get_os)-$(get_arch).zip"
+	url="$GH_REPO/releases/download/v${version}/$(get_release_filename)"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
 
+install_linux_version() {
+	local install_path="$1"
+
+	mkdir -p "$install_path/bin"
+	(cd "$ASDF_DOWNLOAD_PATH" && ./install -i "$install_path/bin" -b "$install_path/bin")
+}
+
+install_macos_version() {
+	local install_path="$1"
+	local package_file expanded_path payload_path
+	package_file="$ASDF_DOWNLOAD_PATH/$(get_release_filename)"
+	expanded_path=$(mktemp -d "$ASDF_DOWNLOAD_PATH/package.XXXXXX")
+	rmdir "$expanded_path"
+	ASDF_AWSSAMCLI_EXPANDED_PATH="$expanded_path"
+	trap 'rm -rf "$ASDF_AWSSAMCLI_EXPANDED_PATH"' EXIT
+	pkgutil --expand-full "$package_file" "$expanded_path"
+	payload_path="$expanded_path/aws-sam-cli.pkg/Payload/aws-sam-cli"
+	test -x "$payload_path/sam" || fail "Could not find the SAM CLI payload in $package_file"
+
+	mkdir -p "$install_path/bin"
+	mv "$payload_path" "$install_path/aws-sam-cli"
+	ln -s ../aws-sam-cli/sam "$install_path/bin/sam"
+}
+
 install_version() {
 	local install_type="$1"
 	local version="$2"
-	local install_path="${3%/bin}/bin"
+	local install_path="${3%/}"
 
 	if [ "$install_type" != "version" ]; then
 		fail "asdf-$TOOL_NAME supports release installs only"
 	fi
 
 	(
-		mkdir -p "$install_path"
-		(cd "$ASDF_DOWNLOAD_PATH" && ./install -i "$install_path" -b "$install_path")
+		case "$(get_os)" in
+		linux) install_linux_version "$install_path" ;;
+		macos) install_macos_version "$install_path" ;;
+		esac
 
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
-		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
+		test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/bin/$tool_cmd to be executable."
 
 		echo "$TOOL_NAME $version installation was successful!"
 	) || (

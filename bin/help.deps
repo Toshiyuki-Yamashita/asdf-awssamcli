@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-declare -a deps=(
-	"git"
-	"curl"
-	"unzip"
-)
-for deps in git curl unzip; do
-	echo $deps
-done
+printf '%s\n' git curl
+
+case "$(uname -s)" in
+Linux) printf '%s\n' unzip ;;
+Darwin) printf '%s\n' pkgutil ;;
+esac
