@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "asdf-samcli: integration test latest (Linux)",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/test.bash",
+      "args": ["latest"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "asdf-samcli: lint",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/lint.bash",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "asdf-samcli: latest stable",
+      "type": "shell",
+      "command": "${workspaceFolder}/bin/latest-stable",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

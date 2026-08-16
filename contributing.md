@@ -1,11 +1,42 @@
 # Contributing
 
-Testing Locally:
+## Local testing
+
+Run an end-to-end test against the current working tree:
 
 ```shell
-asdf plugin test <plugin-name> <plugin-url> [--asdf-tool-version <version>] [--asdf-plugin-gitref <git-ref>] [test-command*]
-
-asdf plugin test awssamcli https://github.com/Toshiyuki-Yamashita/asdf-awssamcli.git "sam --version"
+scripts/test.bash
 ```
+
+The end-to-end installation currently requires Linux. AWS SAM CLI publishes
+macOS releases as `.pkg` files, while this plugin's download and install hooks
+currently handle the Linux `.zip` distribution. The metadata hooks can still be
+debugged on macOS with the VS Code configurations described below.
+
+Pass a version and an optional verification command when needed:
+
+```shell
+scripts/test.bash 1.140.0 sam --version
+```
+
+The script creates an isolated `ASDF_DATA_DIR`, links the current working tree as
+the plugin, installs SAM CLI, runs the verification command, and removes the
+temporary environment. It does not change your normal asdf installation or any
+`.tool-versions` file outside that environment.
+
+Set `ASDF_PLUGIN_DEBUG=1` to enable shell tracing. Set
+`ASDF_TEST_KEEP_TEMP=1` to retain the isolated environment for inspection.
+
+## VS Code debugging
+
+Install the recommended extensions and start **Debug end-to-end plugin test**
+from the Run and Debug view. The debug configuration enables tracing in the
+test harness and plugin hooks and keeps the isolated test environment; its path
+is printed when the debug session ends. Use **Debug latest-stable** or
+**Debug list-all** to set breakpoints and step through those hooks directly.
+
+The **asdf-samcli: integration test latest (Linux)**, **asdf-samcli: lint**,
+and **asdf-samcli: latest stable** commands are also available from **Run
+Task**.
 
 Tests are automatically run in GitHub Actions on push and PR.
