@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug end-to-end plugin test",
+      "type": "bashdb",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/test.bash",
+      "args": ["${input:samcliVersion}"],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "ASDF_PLUGIN_DEBUG": "1",
+        "ASDF_TEST_KEEP_TEMP": "1"
+      },
+      "terminalKind": "integrated"
+    },
+    {
+      "name": "Debug latest-stable",
+      "type": "bashdb",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/latest-stable",
+      "cwd": "${workspaceFolder}",
+      "terminalKind": "integrated"
+    },
+    {
+      "name": "Debug list-all",
+      "type": "bashdb",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/list-all",
+      "cwd": "${workspaceFolder}",
+      "terminalKind": "integrated"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "samcliVersion",
+      "type": "promptString",
+      "description": "AWS SAM CLI version to install (or latest)",
+      "default": "latest"
+    }
+  ]
+}
